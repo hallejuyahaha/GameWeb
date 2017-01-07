@@ -1,0 +1,6 @@
+D:\vsproject\GameWeb\GameWeb\bin\GameWeb.dll.config
+D:\vsproject\GameWeb\GameWeb\bin\GameWeb.dll
+D:\vsproject\GameWeb\GameWeb\bin\GameWeb.pdb
+D:\vsproject\GameWeb\GameWeb\obj\Debug\GameWeb.csprojResolveAssemblyReference.cache
+D:\vsproject\GameWeb\GameWeb\obj\Debug\GameWeb.dll
+D:\vsproject\GameWeb\GameWeb\obj\Debug\GameWeb.pdb

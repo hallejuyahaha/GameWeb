@@ -5,6 +5,29 @@
     <title>GameWeb</title>
 </head>
 <body>
+    <div>
+        用户名:
+        <input type="text" id="uname_text" />
+        密码:
+        <input type="text" id="pword_text" />
+        <input type="button" id="login_button" value="登录" onclick="log()" />
+        <input type="button" id="zhuce_button" value="注册" />
+    </div>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript">
+        function log() {
+            $.ajax({
+                url: 'hand.ashx',
+                dataType: 'text',
+                type: 'POST',
+                data: {
+                    username: document.getElementById("uname_text").value,
+                    password: document.getElementById("pword_text").value,
+                },
+                success: function (out) { window.alert(out); },
+                error: function () { alert('error'); }
+            });
+        }
+    </script>
 </body>
 </html>
