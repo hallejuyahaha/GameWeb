@@ -9,24 +9,36 @@
         用户名:
         <input type="text" id="uname_text" />
         密码:
-        <input type="text" id="pword_text" />
+        <input type="password" id="pword_text" />
         <input type="button" id="login_button" value="登录" onclick="log()" />
         <input type="button" id="zhuce_button" value="注册" />
     </div>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
+        var a = document.getElementById("uname_text");
+        var b = document.getElementById("pword_text");
+
         function log() {
-            $.ajax({
-                url: 'hand.ashx',
-                dataType: 'text',
-                type: 'POST',
-                data: {
-                    username: document.getElementById("uname_text").value,
-                    password: document.getElementById("pword_text").value,
-                },
-                success: function (out) { window.alert(out); },
-                error: function () { alert('error'); }
-            });
+            if (a.value.length > 0 && b.value.length > 0) {
+                $.ajax({
+                    url: 'hand.ashx',
+                    dataType: 'text',
+                    type: 'POST',
+                    data: {
+                        username: a.value,
+                        password: b.value,
+
+                    },
+                    success: function (out) {
+                        if (out == "成功") {
+                            window.location.href = "Main.html";
+                        } else { alert('账号密码错误'); }
+                    },
+                    error: function () { alert('error'); }
+                });
+            } else {
+                window.alert("账号密码不能为空");
+            }
         }
     </script>
 </body>

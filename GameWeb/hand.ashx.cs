@@ -15,10 +15,21 @@ namespace GameWeb
         public void ProcessRequest(HttpContext context)
         {
             string username = context.Request.Form["username"];
-
-            DataTable dt = Common.Excute.ExecuteQuery("select * from GameData");
+            string password = context.Request.Form["password"];
+            bool flag = false;
+            string result = "失败";
+           // int i = Common.Excute.Execute("select * from GameData");
+            DataTable dt = Common.Excute.ExecuteQuery("select * from GameData where username='" + username + "' and password = '" + password + "'");
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                flag = true;
+            }
+            if (flag) 
+            {
+                result = "成功";
+            }
             context.Response.ContentType = "text/plain";
-            context.Response.Write("Hello World");
+            context.Response.Write(result);
         }
 
         public bool IsReusable

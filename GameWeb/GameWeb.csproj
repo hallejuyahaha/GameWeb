@@ -77,7 +77,10 @@
     <Content Include="js\ChessJs.js" />
     <Content Include="js\Flappy_js.js" />
     <Content Include="js\jquery-1.10.2.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Main.html" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="hand.ashx.cs">
