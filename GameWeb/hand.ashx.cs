@@ -5,31 +5,58 @@ using System.Linq;
 using System.Web;
 
 namespace GameWeb
-{
+{  
     /// <summary>
     /// hand 的摘要说明
     /// </summary>
     public class hand : IHttpHandler
     {
-
+        
         public void ProcessRequest(HttpContext context)
         {
-            string username = context.Request.Form["username"];
-            string password = context.Request.Form["password"];
-            bool flag = false;
-            string result = "失败";
-           // int i = Common.Excute.Execute("select * from GameData");
-            DataTable dt = Common.Excute.ExecuteQuery("select * from GameData where username='" + username + "' and password = '" + password + "'");
-            if (dt != null && dt.Rows.Count > 0)
+            string username = "";
+            string password;
+            //Dictionary<key, value> five = new Dictionary<key, value>();
+            string method = context.Request.Form["method"];
+            switch (method)
             {
-                flag = true;
+                case "index":
+                    {
+                        username = context.Request.Form["username"];
+                        password = context.Request.Form["password"];
+                        bool flag = false;
+                        string result = "失败";
+                        // int i = Common.Excute.Execute("select * from GameData");
+                        DataTable dt = Common.Excute.ExecuteQuery("select * from GameData where username='" + username + "' and password = '" + password + "'");
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            flag = true;
+                        }
+                        if (flag)
+                        {
+                            result = "成功";
+                        }
+                        context.Response.ContentType = "text/plain";
+                        context.Response.Write(result);
+                    }
+                    break;
+                case "five":
+                    {
+                        DataTable five = Common.Excute.ExecuteQuery("select username,fivewin from GameData where fivewin = (select max(fivewin) from GameData)");
+                       // string now = context.Request.Form["now"];
+                       // string most = context.Request.Form["most"];
+                        DataRow r = five.Rows[0];
+                        string a = r["username"].ToString();
+                        string b = r["fivewin"].ToString();
+
+                        string d = a + "`" + b +"`"+ username;
+                        context.Response.ContentType = "text/plain";
+                        context.Response.Write(d);
+                    }
+                    break;
+                default: break;
             }
-            if (flag) 
-            {
-                result = "成功";
-            }
-            context.Response.ContentType = "text/plain";
-            context.Response.Write(result);
+            
         }
 
         public bool IsReusable

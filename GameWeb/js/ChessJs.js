@@ -2,6 +2,7 @@
 var wins = [];//赢法数组
 var count = 0; //赢法索引
 var over = false;//判断是否结束
+var imwin = false;//我赢了？
 var table = new Array(15);
 for (var i = 0; i < 15; i++) {   //初始化table全为0
     table[i] = new Array(15);
@@ -67,6 +68,7 @@ var content = chess.getContext("2d");//canvas
 content.strokeStyle = "#BFBFBF";
 
 window.onload = function () {
+   
     drawboard();
 }
 //画棋盘
@@ -119,6 +121,17 @@ chess.onclick = function (e) {
                 pcwin[k] = 6;
                 if (mywin[k] == 5) {
                     window.alert("你赢了");
+                   /* $.ajax({
+                        url: 'hand.ashx',
+                        type: 'POST',
+                        data: {
+                            method: 'five',
+                        },
+                        success: function (outfive) {
+                           
+                        },
+                        error: function () { alert('error'); }
+                    });*/
                     over = true;
                 }
             }

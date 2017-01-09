@@ -22,17 +22,18 @@
             if (a.value.length > 0 && b.value.length > 0) {
                 $.ajax({
                     url: 'hand.ashx',
+                   
                     dataType: 'text',
                     type: 'POST',
                     data: {
                         username: a.value,
                         password: b.value,
-
+                        method: "index",
                     },
                     success: function (out) {
                         if (out == "成功") {
                             window.location.href = "Main.html";
-                        } else { alert('账号密码错误'); }
+                        } else { alert('账号密码错误'); } 
                     },
                     error: function () { alert('error'); }
                 });

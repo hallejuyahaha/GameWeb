@@ -1,12 +1,38 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="css/ChessStyle.css">
     <title>five</title>
 </head>
 <body>
+    <div onload="fivelog()">
+        </div><div>当前用户：<div id="now"></div><input type="button" onclick="fivelog()"/></div>
+        <div>全网最高分用户：<div id="most"></div></div>
+    </div>
     <canvas id="chess" width="450px" height="450px"></canvas>
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/ChessJs.js"></script>
+    <script type="text/javascript">
+        var a = document.getElementById("now");
+        var b = document.getElementById("most");
+        function fivelog() {
+            $.ajax({
+                url: 'hand.ashx',
+                type: 'POST',
+                data: {
+                    // now: document.getElementById("now"),
+                    // most: document.getElementById("most"),
+                    method: 'five',
+                },
+                success: function (outfive) {
+                    outfive = outfive.split('`');
+                    a.innerHTML = outfive[2];
+                    b.innerHTML = "用户： "+outfive[0] + " 分数 "+ outfive[1];
+                },
+                error: function () { alert('error'); }
+            });
+        }
+    </script>
 </body>
 </html>
