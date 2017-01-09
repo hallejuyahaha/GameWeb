@@ -132,18 +132,18 @@ chess.onclick = function (e) {
                 pcwin[k] = 6;
                 if (mywin[k] == 5) {
                     window.alert("你赢了");
-                    /*(function () {
-                        $.ajax({
-                            url: 'hand.ashx',
-                            type: 'POST',
-                            data: {
-                                method: 'five',
-                            },
-                            success: function (outfive) {
+                   /* $.ajax({
+                        url: '/hand.ashx',
+                        type: 'POST',
+                        dataType: 'text',
+                        data: {
+                            method: 'fivewin',
+                            username: nowusername,
+                        },
+                        success: function (outfivewin) {
 
-                            },
-                            error: function () { alert('error'); }
-                        });
+                        },
+                        error: function () { alert('error'); }
                     });*/
                     over = true;
                 }

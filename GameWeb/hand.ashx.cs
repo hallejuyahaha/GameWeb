@@ -51,6 +51,14 @@ namespace GameWeb
                         context.Response.Write(d);
                     }
                     break;
+                case "fivewin":
+                    {
+                        //username
+                        Common.Excute.ExcuteCount("update GameData set fivewin = fivewin + 1 where username = '" + context.Request.Form["username"] + "'");
+                        context.Response.ContentType = "text/plain";
+                        context.Response.Write("");
+                    }
+                    break;
                 default: break;
             }
             
