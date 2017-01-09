@@ -14,16 +14,13 @@ namespace GameWeb
         
         public void ProcessRequest(HttpContext context)
         {
-            string username = "";
-            string password;
-            //Dictionary<key, value> five = new Dictionary<key, value>();
             string method = context.Request.Form["method"];
             switch (method)
             {
                 case "index":
                     {
-                        username = context.Request.Form["username"];
-                        password = context.Request.Form["password"];
+                        string username = context.Request.Form["username"];
+                        string password = context.Request.Form["password"];
                         bool flag = false;
                         string result = "失败";
                         // int i = Common.Excute.Execute("select * from GameData");
@@ -49,7 +46,7 @@ namespace GameWeb
                         string a = r["username"].ToString();
                         string b = r["fivewin"].ToString();
 
-                        string d = a + "`" + b +"`"+ username;
+                        string d = a + "`" + b ;
                         context.Response.ContentType = "text/plain";
                         context.Response.Write(d);
                     }

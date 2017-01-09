@@ -68,7 +68,18 @@ var content = chess.getContext("2d");//canvas
 content.strokeStyle = "#BFBFBF";
 
 window.onload = function () {
-   
+    $.ajax({
+        url: '/hand.ashx',
+        type: 'POST',
+        data: {
+            method: 'five',
+        },
+        success: function (outfive) {
+            outfive = outfive.split('`');
+            b.innerHTML = "名字： " + outfive[0] + " 分数 " + outfive[1];
+        },
+        error: function () { alert('error'); }
+    });
     drawboard();
 }
 //画棋盘
@@ -121,16 +132,18 @@ chess.onclick = function (e) {
                 pcwin[k] = 6;
                 if (mywin[k] == 5) {
                     window.alert("你赢了");
-                   /* $.ajax({
-                        url: 'hand.ashx',
-                        type: 'POST',
-                        data: {
-                            method: 'five',
-                        },
-                        success: function (outfive) {
-                           
-                        },
-                        error: function () { alert('error'); }
+                    /*(function () {
+                        $.ajax({
+                            url: 'hand.ashx',
+                            type: 'POST',
+                            data: {
+                                method: 'five',
+                            },
+                            success: function (outfive) {
+
+                            },
+                            error: function () { alert('error'); }
+                        });
                     });*/
                     over = true;
                 }

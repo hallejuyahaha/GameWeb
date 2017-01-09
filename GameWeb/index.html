@@ -22,7 +22,6 @@
             if (a.value.length > 0 && b.value.length > 0) {
                 $.ajax({
                     url: 'hand.ashx',
-                   
                     dataType: 'text',
                     type: 'POST',
                     data: {
@@ -37,7 +36,10 @@
                     },
                     error: function () { alert('error'); }
                 });
-            } else {
+                document.cookie = "uname="+a.value.toString();//将账号放入cookie
+            }
+            else
+            {
                 window.alert("账号密码不能为空");
             }
         }
