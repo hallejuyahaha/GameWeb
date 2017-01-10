@@ -13,6 +13,25 @@ var game_over = false;
 var score = 0;//分数
 //全局变量结束
 
+//onlond函数
+window.onload = function () {
+    $.ajax({
+        url: '/hand.ashx',
+        type: 'POST',
+        data: {
+            method: 'flappy',
+            nowusername: nowusername,
+        },
+        success: function (outflappy) {
+            //outfive = outfive.split('`');
+            //b.innerHTML = "名字： " + outfive[0] + " 分数 " + outfive[1];
+            //c.innerHTML = outfive[2];
+        },
+        error: function () { alert('error flappy'); }
+    });
+}
+//onlond函数结束
+
 //Bird的构造函数
 var Bird = function (img,x,y,speed,ctx){
     this.img = img;

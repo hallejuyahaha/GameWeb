@@ -48,7 +48,7 @@ for (var i = 0; i < 11; i++) {
 }
 //反斜线
 for (var i = 0; i < 11; i++) {
-    for (var j = 14; j < 3; j--) {
+    for (var j = 14; j > 3; j--) {
         for (var k = 0; k < 5; k++) {
             wins[i + k][j - k][count] = true;
         }
@@ -68,15 +68,18 @@ var content = chess.getContext("2d");//canvas
 content.strokeStyle = "#BFBFBF";
 
 window.onload = function () {
+    var c = document.getElementById("nowscore");
     $.ajax({
         url: '/hand.ashx',
         type: 'POST',
         data: {
             method: 'five',
+            nowusername: nowusername,
         },
         success: function (outfive) {
             outfive = outfive.split('`');
             b.innerHTML = "名字： " + outfive[0] + " 分数 " + outfive[1];
+            c.innerHTML = outfive[2];
         },
         error: function () { alert('error'); }
     });
@@ -132,7 +135,7 @@ chess.onclick = function (e) {
                 pcwin[k] = 6;
                 if (mywin[k] == 5) {
                     window.alert("你赢了");
-                   /* $.ajax({
+                    $.ajax({      //赢了，向后台数据表加1
                         url: '/hand.ashx',
                         type: 'POST',
                         dataType: 'text',
@@ -140,12 +143,27 @@ chess.onclick = function (e) {
                             method: 'fivewin',
                             username: nowusername,
                         },
-                        success: function (outfivewin) {
-
+                        success: function () {
+                            // a.innerHTML = nowusername + "  胜场：" + outfivewin;
                         },
-                        error: function () { alert('error'); }
-                    });*/
+                        error: function () { alert('error1111'); }
+                    });
+                    //$.ajax({      //  重新加载一次div     
+                    //    url: '/hand.ashx',
+                    //    type: 'POST',
+                    //    data: {
+                    //        method: 'five',
+                    //        nowusername: nowusername,
+                    //    },
+                    //    success: function (outfive) {
+                    //        outfive = outfive.split('`');
+                    //        b.innerHTML = "名字： " + outfive[0] + " 分数 " + outfive[1];
+                    //        c.innerHTML = outfive[2];
+                    //    },
+                    //    error: function () { alert('error'); }
+                    //});
                     over = true;
+                    location.reload();//刷新当前页面
                 }
             }
         }

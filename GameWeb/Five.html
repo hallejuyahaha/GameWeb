@@ -7,7 +7,7 @@
 </head>
 <body>
     <div>
-        <div>当前用户：<div id="now"></div></div>
+        <div>当前用户：<div id="now"></div>胜场 <div id="nowscore"></div></div>
         <div>全网五子棋赢场最多用户：<div id="most"></div>
     </div>
     <canvas id="chess" width="450px" height="450px"></canvas>
@@ -16,6 +16,7 @@
     <script type="text/javascript">
         var a = document.getElementById("now");
         var b = document.getElementById("most");
+        
         function getCookie(c_name) {
             if (document.cookie.length > 0) {　　//先查询cookie是否为空，为空就return ""
                 c_start = document.cookie.indexOf(c_name + "=")　　//通过String对象的indexOf()来检查这个cookie是否存在，不存在就为 -1　　

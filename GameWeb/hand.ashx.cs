@@ -39,24 +39,35 @@ namespace GameWeb
                     break;
                 case "five":
                     {
+                        string nowusername = context.Request.Form["nowusername"];
                         DataTable five = Common.Excute.ExecuteQuery("select username,fivewin from GameData where fivewin = (select max(fivewin) from GameData)");
-                       // string now = context.Request.Form["now"];
-                       // string most = context.Request.Form["most"];
+                        DataTable nowuser = Common.Excute.ExecuteQuery("select fivewin from GameData where username = '"+nowusername +"'");
+                        // string most = context.Request.Form["most"];
+                        DataRow aa = nowuser.Rows[0];
+                        string c = aa[0].ToString();
                         DataRow r = five.Rows[0];
                         string a = r["username"].ToString();
                         string b = r["fivewin"].ToString();
 
-                        string d = a + "`" + b ;
+                        string d = a + "`" + b + "`" +c;
                         context.Response.ContentType = "text/plain";
                         context.Response.Write(d);
                     }
                     break;
                 case "fivewin":
                     {
-                        //username
                         Common.Excute.ExcuteCount("update GameData set fivewin = fivewin + 1 where username = '" + context.Request.Form["username"] + "'");
+                       // string username = context.Request.Form["username"];
+                       // DataTable fivewin = Common.Excute.ExecuteQuery("select fivewin from GameData where username = '"+username+"'");
+                       // DataRow fivewinRow = fivewin.Rows[0];
+                       // string newscore = fivewinRow["fivewin"].ToString();
                         context.Response.ContentType = "text/plain";
                         context.Response.Write("");
+                    }
+                    break;
+                case "flappy":
+                    {
+                        string nowusername = context.Request.Form["nowusername"];
                     }
                     break;
                 default: break;
