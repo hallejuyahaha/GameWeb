@@ -69,6 +69,8 @@ content.strokeStyle = "#BFBFBF";
 
 window.onload = function () {
     var c = document.getElementById("nowscore");
+    var d = document.getElementById("second");
+    var e = document.getElementById("third");
     $.ajax({
         url: '/hand.ashx',
         type: 'POST',
@@ -79,7 +81,9 @@ window.onload = function () {
         success: function (outfive) {
             outfive = outfive.split('`');
             b.innerHTML = "名字： " + outfive[0] + " 分数 " + outfive[1];
-            c.innerHTML = outfive[2];
+            c.innerHTML = outfive[6];
+            d.innerHTML = "名字： " + outfive[2] + " 分数 " + outfive[3];
+            e.innerHTML = "名字： " + outfive[4] + " 分数 " + outfive[5];
         },
         error: function () { alert('error'); }
     });
@@ -135,6 +139,7 @@ chess.onclick = function (e) {
                 pcwin[k] = 6;
                 if (mywin[k] == 5) {
                     window.alert("你赢了");
+                    over = true;
                     $.ajax({      //赢了，向后台数据表加1
                         url: '/hand.ashx',
                         type: 'POST',
@@ -144,25 +149,9 @@ chess.onclick = function (e) {
                             username: nowusername,
                         },
                         success: function () {
-                            // a.innerHTML = nowusername + "  胜场：" + outfivewin;
                         },
                         error: function () { alert('error1111'); }
                     });
-                    //$.ajax({      //  重新加载一次div     
-                    //    url: '/hand.ashx',
-                    //    type: 'POST',
-                    //    data: {
-                    //        method: 'five',
-                    //        nowusername: nowusername,
-                    //    },
-                    //    success: function (outfive) {
-                    //        outfive = outfive.split('`');
-                    //        b.innerHTML = "名字： " + outfive[0] + " 分数 " + outfive[1];
-                    //        c.innerHTML = outfive[2];
-                    //    },
-                    //    error: function () { alert('error'); }
-                    //});
-                    over = true;
                     location.reload();//刷新当前页面
                 }
             }
