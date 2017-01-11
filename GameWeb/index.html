@@ -2,23 +2,27 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="css/index.css" />
     <title>GameWeb</title>
 </head>
 <body>
-    <div>
+    <div id="main">
         用户名:
         <input type="text" id="uname_text" />
         密码:
         <input type="password" id="pword_text" />
         <input type="button" id="login_button" value="登录" onclick="log()" />
-        <input type="button" id="zhuce_button" value="注册" />
+        <input type="button" id="zhuce_button" value="注册" onclick="zhu()"/>
     </div>
     <div>默认账号  aaa  密码 111</div>
+    <div id="zz"  class="zhu">
+        新用户名：<input type="text" id="newuser"/>
+        密码：<input type="password" id="newpassword"/>
+        <input type="button" id="newzhuce" value="添加新用户" onclick="add()"/>
+    </div>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <script type="text/javascript">
-        var a = document.getElementById("uname_text");
-        var b = document.getElementById("pword_text");
-
         function log() {
             if (a.value.length > 0 && b.value.length > 0) {
                 $.ajax({

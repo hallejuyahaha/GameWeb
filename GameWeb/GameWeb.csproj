@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\index.css" />
     <Content Include="hand.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -76,6 +77,7 @@
     <Content Include="index.html" />
     <Content Include="js\ChessJs.js" />
     <Content Include="js\Flappy_js.js" />
+    <Content Include="js\index.js" />
     <Content Include="js\jquery-1.10.2.min.js" />
     <Content Include="Main.html" />
     <Content Include="Web.config">
