@@ -1,8 +1,12 @@
 body {
 	
 }
-canvas {
+.bird {
     display:block;
-    margin: 50px auto;
+    margin: 20px auto;
     box-shadow: -2px -2px 2px #EFEFEF, 5px 5px 5px #B9B9B9
+}
+.bird_score {
+    display:block;
+    margin: 50px auto 0 auto;
 }

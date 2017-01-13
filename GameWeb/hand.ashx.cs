@@ -61,7 +61,6 @@ namespace GameWeb
                 case "five":
                     {
                         string nowusername = context.Request.Form["nowusername"];
-                        // DataTable five = Common.Excute.ExecuteQuery("select username,fivewin from GameData where fivewin = (select max(fivewin) from GameData)");
                         DataTable five = Common.Excute.ExecuteQuery("select top 3 username,fivewin from GameData order by fivewin desc");
                         DataTable nowuser = Common.Excute.ExecuteQuery("select fivewin from GameData where username = '" + nowusername + "'");
                         // string most = context.Request.Form["most"];
@@ -72,7 +71,6 @@ namespace GameWeb
                         string a1;
                         string a2;
                         string a3;
-                        string b;
 
                         a1 = five.Rows[0]["username"].ToString() + "`" + five.Rows[0]["fivewin"].ToString();
                         a2 = five.Rows[1]["username"].ToString() + "`" + five.Rows[1]["fivewin"].ToString();
@@ -98,6 +96,24 @@ namespace GameWeb
                 case "flappy":
                     {
                         string nowusername = context.Request.Form["nowusername"];
+                        DataTable nus = Common.Excute.ExecuteQuery("select bird from GameData where username = '" + nowusername + "'");
+                        DataTable top3 = Common.Excute.ExecuteQuery("select top 3 username,bird from GameData order by bird desc");
+                        string nowbird = nus.Rows[0]["bird"].ToString();
+                        string top3_1 = top3.Rows[0]["username"].ToString() + "`" + top3.Rows[0]["bird"];
+                        string top3_2 = top3.Rows[1]["username"].ToString() + "`" + top3.Rows[1]["bird"];
+                        string top3_3 = top3.Rows[2]["username"].ToString() + "`" + top3.Rows[2]["bird"];
+                        string fin = top3_1 + "`" + top3_2 + "`" + top3_3 + "`" + nowbird;
+                        context.Response.ContentType = "text/plain";
+                        context.Response.Write(fin);
+                    }
+                    break;
+                case "flappy_end":
+                    {
+                        string name = context.Request.Form["nowusername"];
+                        string bird_s = context.Request.Form["sc"];
+                        Common.Excute.ExecuteQuery("update GameData set bird = '" + bird_s + "' where username = '" + name + "'");
+                        context.Response.ContentType = "text/plain";
+                        context.Response.Write("");
                     }
                     break;
                 default: break;
